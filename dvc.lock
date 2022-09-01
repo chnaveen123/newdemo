@@ -1,0 +1,47 @@
+schema: '2.0'
+stages:
+  raw_dataset_creation:
+    cmd: python src/data/load_data.py --config=params.yaml
+    deps:
+    - path: data/external/train.csv
+      md5: 2152af01413e88970fbe58207aa95ddb
+      size: 391324
+    - path: src/data/load_data.py
+      md5: e4cb5a18d5f477d48f9e7d86516b481b
+      size: 1456
+    outs:
+    - path: data/raw/train.csv
+      md5: c7b0de35a6861ce5e8ea8c6dca193ffa
+      size: 120226
+  split_data:
+    cmd: python src/data/split_data.py --config=params.yaml
+    deps:
+    - path: data/raw/train.csv
+      md5: c7b0de35a6861ce5e8ea8c6dca193ffa
+      size: 120226
+    - path: src/data/split_data.py
+      md5: 64a0db24f26b14498dc97e714cbf6088
+      size: 1394
+    outs:
+    - path: data/processed/churn_test.csv
+      md5: e93605c84d961564bf424d940a0f8fef
+      size: 24135
+    - path: data/processed/churn_train.csv
+      md5: 2b0045cd383e6b59410b46d1801dfb36
+      size: 96220
+  model_train:
+    cmd: python src/models/train_model.py --config=params.yaml
+    deps:
+    - path: data/processed/churn_test.csv
+      md5: e93605c84d961564bf424d940a0f8fef
+      size: 24135
+    - path: data/processed/churn_train.csv
+      md5: 2b0045cd383e6b59410b46d1801dfb36
+      size: 96220
+    - path: src/models/train_model.py
+      md5: ba659ea870c2bb9aed6cca850b7da7ec
+      size: 3886
+    params:
+      params.yaml:
+        random_forest.max_depth: 40
+        random_forest.n_estimators: 50
