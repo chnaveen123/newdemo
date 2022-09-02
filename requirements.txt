@@ -1,7 +1,4 @@
-# local package
--e .
 
-# external requirements
 click
 Sphinx
 coverage
@@ -15,5 +12,5 @@ pytest
 tox 
 joblib
 mlflow
-model.joblib
+
 scikit-learn
