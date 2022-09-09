@@ -22,7 +22,7 @@ mlflow_config:
  
 random_forest: 
   max_depth: 40
-  n_estimators: 50
+  n_estimators: 60
 
 model_dir: models/model.joblib
 

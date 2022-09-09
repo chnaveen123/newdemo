@@ -44,4 +44,4 @@ stages:
     params:
       params.yaml:
         random_forest.max_depth: 40
-        random_forest.n_estimators: 50
+        random_forest.n_estimators: 60

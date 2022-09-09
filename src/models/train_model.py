@@ -2,7 +2,7 @@ import json
 import yaml
 import joblib
 import mlflow
-import model.joblib
+
 import argparse
 import numpy as np
 import pandas as pd
